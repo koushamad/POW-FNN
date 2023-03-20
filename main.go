@@ -1,13 +1,15 @@
 package main
 
-import "github.com/gonum/matrix/mat64"
-import "github.com/koushamad/POW-FNN/lib"
+import (
+	"github.com/gonum/matrix/mat64"
+	"github.com/koushamad/POW-FNN/lib"
+)
 
 func main() {
 	// Example input data
-	data := lib.InputData{
-		X: *mat64.NewDense(4, 2, []float64{0, 0, 0, 1, 1, 0, 1, 1}),
-		Y: *mat64.NewDense(4, 1, []float64{0, 1, 1, 0}),
+	data := &lib.InputData{
+		X: mat64.NewDense(4, 2, []float64{0, 0, 0, 1, 1, 0, 1, 1}),
+		Y: mat64.NewDense(4, 1, []float64{0, 1, 1, 0}),
 	}
 
 	// PoW with FNN

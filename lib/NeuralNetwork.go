@@ -25,7 +25,7 @@ func (nn *NeuralNetwork) Train(X, Y *mat64.Dense, learningRate float64) {
 	// Backpropagation
 	errors := []*mat64.Dense{}
 	delta := &mat64.Dense{}
-	delta.Sub(Y, activations[len(activations)-1])
+	delta.Sub(Y.T(), activations[len(activations)-1])
 	errors = append(errors, delta)
 
 	for i := len(nn.Layers) - 1; i > 0; i-- {

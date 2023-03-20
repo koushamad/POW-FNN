@@ -9,11 +9,11 @@ import (
 )
 
 type InputData struct {
-	X mat64.Dense
-	Y mat64.Dense
+	X *mat64.Dense
+	Y *mat64.Dense
 }
 
-func PoWFNN(data InputData, targetError float64) {
+func PoWFNN(data *InputData, targetError float64) {
 	rand.Seed(time.Now().UnixNano())
 
 	// Define the neural network
@@ -22,8 +22,8 @@ func PoWFNN(data InputData, targetError float64) {
 	// Train the neural network
 	var error float64
 	for {
-		nn.Train(&data.X, &data.Y, 0.1)
-		error = nn.CalculateError(&data.X, &data.Y)
+		nn.Train(data.X, data.Y, 0.1)
+		error = nn.CalculateError(data.X, data.Y)
 		fmt.Printf("Error: %f\n", error)
 
 		if error < targetError {
